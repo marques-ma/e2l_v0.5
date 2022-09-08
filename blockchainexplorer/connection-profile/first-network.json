@@ -1,0 +1,62 @@
+{
+	"name": "first-network",
+	"version": "1.0.0",
+	"license": "Apache-2.0",
+	"client": {
+		"tlsEnable": true,
+		"adminUser": "admin",
+		"adminPassword": "adminpw",
+		"enableAuthentication": false,
+		"organization": "ProvedorMSP",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "300"
+				},
+				"orderer": "300"
+			}
+		}
+	},
+	"channels": {
+		"dockerchannel": {
+			"peers": {
+				"peer0.provedor.labenv.com": {}
+			},
+			"connection": {
+				"timeout": {
+					"peer": {
+						"endorser": "6000",
+						"eventHub": "6000",
+						"eventReg": "6000"
+					}
+				}
+			}
+		}
+	},
+	"organizations": {
+		"ProvedorMSP": {
+			"mspid": "ProvedorMSP",
+			"adminPrivateKey": {
+				"path": "/etc/data/peerOrganizations/provedor.labenv.com/users/Admin@provedor.labenv.com/msp/keystore/priv_sk"
+			},
+			"peers": [
+				"peer0.provedor.labenv.com"
+			],
+			"signedCert": {
+				"path": "/etc/data/peerOrganizations/provedor.labenv.com/users/Admin@provedor.labenv.com/msp/signcerts/Admin@provedor.labenv.com-cert.pem"
+			}
+		}
+	},
+	"peers": {
+		"peer0.provedor.labenv.com": {
+			"tlsCACerts": {
+				"path": "/etc/data/peerOrganizations/provedor.labenv.com/peers/peer0.provedor.labenv.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.provedor.labenv.com:7051",
+			"eventUrl": "grpcs://peer0.provedor.labenv.com:7053",
+			"grpcOptions": {
+				"ssl-target-name-override": "peer0.provedor.labenv.com"
+			}
+		}
+	}
+}

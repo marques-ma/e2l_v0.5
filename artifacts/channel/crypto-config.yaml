@@ -1,0 +1,81 @@
+
+OrdererOrgs:
+  # ---------------------------------------------------------------------------
+  # Orderer
+  # 3 nós orderer (a verificar)
+  # ---------------------------------------------------------------------------
+  - Name: Orderer
+    Domain: labenv.com
+    EnableNodeOUs: true
+
+    # ---------------------------------------------------------------------------
+    # "Specs" - See PeerOrgs below for complete description
+    # ---------------------------------------------------------------------------
+    Specs:
+      - Hostname: orderer
+        SANS:
+            - "localhost"
+            - "127.0.0.1"
+      - Hostname: orderer2
+        SANS:
+          - "localhost"
+          - "127.0.0.1"
+      - Hostname: orderer3
+        SANS:
+            - "localhost"
+            - "127.0.0.1"
+
+# ---------------------------------------------------------------------------
+# "PeerOrgs" - Definition of organizations managing peer nodes
+#
+# Definição das três organizações: Provedor, Desenvolvedor e Usuário.
+# Cada uma das orgs possui 2 peers e 1 user.
+# ---------------------------------------------------------------------------
+PeerOrgs:
+  # ---------------------------------------------------------------------------
+  # Provedor
+  # ---------------------------------------------------------------------------
+  - Name: Provedor
+    Domain: provedor.labenv.com
+    EnableNodeOUs: true
+
+    Template:
+      Count: 1
+      # Start: 5
+      # Hostname: {{.Prefix}}{{.Index}} # default
+      SANS:
+        - "localhost"
+        - "10.20.221.71"
+
+    Users:
+      Count: 1
+
+  - Name: Desenvolvedor
+    Domain: desenvolvedor.labenv.com
+    EnableNodeOUs: true
+
+    Template:
+      Count: 1
+      # Start: 5
+      # Hostname: {{.Prefix}}{{.Index}} # default
+      SANS:
+        - "localhost"
+        - "10.20.221.71"
+
+    Users:
+      Count: 1
+
+  - Name: Usuario
+    Domain: usuario.labenv.com
+    EnableNodeOUs: true
+
+    Template:
+      Count: 1
+      # Start: 5
+      # Hostname: {{.Prefix}}{{.Index}} # default
+      SANS:
+        - "localhost"
+        - "10.20.221.71"
+
+    Users:
+      Count: 1

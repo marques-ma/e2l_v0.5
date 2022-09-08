@@ -1,0 +1,10 @@
+channel-artifacts/*.tx
+artifacts/channel/*.tx
+artifacts/channel/*.block
+channel-artifacts/*.block
+artifacts/channel/crypto-config/**
+api-1.4/node_modules/**
+*.tar.gz
+**/*.pem
+**/*.crt
+log.txt

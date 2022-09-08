@@ -1,0 +1,165 @@
+name: "Basic"
+x-type: "hlfv1"
+description: "Basic network"
+version: "1.0"
+channels:
+  dockerchannel:
+    orderers:
+      - orderer.labenv.com
+
+    peers:
+      peer0.provedor.labenv.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+      peer0.desenvolvedor.labenv.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+      peer0.usuario.labenv.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+    chaincodes:
+      - mycc:v0
+
+organizations:
+  Provedor:
+    mspid: ProvedorMSP
+
+    peers:
+      - peer0.provedor.labenv.com
+
+    certificateAuthorities:
+      - ca.provedor.labenv.com
+
+    adminPrivateKey:
+      path: ../artifacts/channel/crypto-config/peerOrganizations/provedor.labenv.com/users/Admin@provedor.labenv.com/msp/keystore/priv_sk
+    signedCert:
+      path: ../artifacts/channel/crypto-config/peerOrganizations/provedor.labenv.com/users/Admin@provedor.labenv.com/msp/signcerts/Admin@provedor.labenv.com-cert.pem
+
+  Desenvolvedor:
+    mspid: DesenvolvedorMSP
+
+    peers:
+      - peer0.desenvolvedor.labenv.com
+
+    certificateAuthorities:
+      - ca.desenvolvedor.labenv.com
+
+    adminPrivateKey:
+      path: ../artifacts/channel/crypto-config/peerOrganizations/desenvolvedor.labenv.com/users/Admin@desenvolvedor.labenv.com/msp/keystore/priv_sk
+    signedCert:
+      path: ../artifacts/channel/crypto-config/peerOrganizations/desenvolvedor.labenv.com/users/Admin@desenvolvedor.labenv.com/msp/signcerts/Admin@desenvolvedor.labenv.com-cert.pem
+
+  Usuario:
+    mspid: UsuarioMSP
+
+    peers:
+      - peer0.usuario.labenv.com
+
+    certificateAuthorities:
+      - ca.usuario.labenv.com
+
+    adminPrivateKey:
+      path: ../artifacts/channel/crypto-config/peerOrganizations/usuario.labenv.com/users/Admin@usuario.labenv.com/msp/keystore/priv_sk
+    signedCert:
+      path: ../artifacts/channel/crypto-config/peerOrganizations/usuario.labenv.com/users/Admin@usuario.labenv.com/msp/signcerts/Admin@usuario.labenv.com-cert.pem
+    
+orderers:
+  orderer.labenv.com:
+    url: grpcs://localhost:7050
+    grpcOptions:
+      ssl-target-name-override: orderer.labenv.com
+    tlsCACerts:
+      path: ../artifacts/channel/crypto-config/ordererOrganizations/labenv.com/orderers/orderer.labenv.com/tls/ca.crt
+
+  orderer2.labenv.com:
+    url: grpcs://localhost:8050
+    grpcOptions:
+      ssl-target-name-override: orderer2.labenv.com
+    tlsCACerts:
+      path: ../artifacts/channel/crypto-config/ordererOrganizations/labenv.com/orderers/orderer2.labenv.com/tls/ca.crt
+
+  orderer3.labenv.com:
+    url: grpcs://localhost:9050
+    grpcOptions:
+      ssl-target-name-override: orderer3.labenv.com
+    tlsCACerts:
+      path: ../artifacts/channel/crypto-config/ordererOrganizations/labenv.com/orderers/orderer3.labenv.com/tls/ca.crt
+
+#
+# List of peers to send various requests to, including endorsement, query
+# and event listener registration.
+#
+peers:
+  peer0.provedor.labenv.com:
+    url: grpcs://localhost:7051
+
+    grpcOptions:
+      ssl-target-name-override: peer0.provedor.labenv.com
+    tlsCACerts:
+      path: ../artifacts/channel/crypto-config/peerOrganizations/provedor.labenv.com/peers/peer0.provedor.labenv.com/tls/ca.crt
+
+  peer0.desenvolvedor.labenv.com:
+    url: grpcs://localhost:9051
+
+    grpcOptions:
+      ssl-target-name-override: peer0.desenvolvedor.labenv.com
+    tlsCACerts:
+      path: ../artifacts/channel/crypto-config/peerOrganizations/desenvolvedor.labenv.com/peers/peer0.desenvolvedor.labenv.com/tls/ca.crt
+
+  peer0.usuario.labenv.com:
+    url: grpcs://localhost:11051
+
+    grpcOptions:
+      ssl-target-name-override: peer0.usuario.labenv.com
+    tlsCACerts:
+      path: ../artifacts/channel/crypto-config/peerOrganizations/usuario.labenv.com/peers/peer0.usuario.labenv.com/tls/ca.crt
+    
+# Fabric-CA is a special kind of Certificate Authority provided by Hyperledger Fabric which allows
+# certificate management to be done via REST APIs. Application may choose to use a standard
+# Certificate Authority instead of Fabric-CA, in which case this section would not be specified.
+#
+certificateAuthorities:
+  ca.provedor.labenv.com:
+    url: https://localhost:7054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: ../artifacts/channel/crypto-config/peerOrganizations/provedor.labenv.com/ca/ca.provedor.labenv.com-cert.pem
+
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    caName: ca.provedor.labenv.com
+
+  ca.desenvolvedor.labenv.com:
+    url: https://localhost:8054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: ../artifacts/channel/crypto-config/peerOrganizations/desenvolvedor.labenv.com/ca/ca.desenvolvedor.labenv.com-cert.pem
+
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    caName: ca.desenvolvedor.labenv.com
+
+  ca.usuario.labenv.com:
+    url: https://localhost:9054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: ../artifacts/channel/crypto-config/peerOrganizations/usuario.labenv.com/ca/ca.usuario.labenv.com-cert.pem
+
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    caName: ca.usuario.labenv.com

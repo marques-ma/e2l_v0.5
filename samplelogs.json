@@ -1,0 +1,62 @@
+{
+    "Type": "service",
+    "Action": "update",
+    "Actor": {
+        "ID": "jezlklgmc76jn6in1fr9a4wns",
+        "Attributes": {
+            "name": "appdemo",
+            "replicas.new": "1",
+            "replicas.old": "2"
+        }
+    },
+    "scope": "swarm",
+    "time": 1625360034,
+    "timeNano": 1625360034627185970
+}
+
+{
+    "Type": "service",
+    "Action": "remove",
+    "Actor": {
+        "ID": "jezlklgmc76jn6in1fr9a4wns",
+        "Attributes": {
+            "name": "appdemo"
+        }
+    },
+    "scope": "swarm",
+    "time": 1625360340,
+    "timeNano": 1625360340685667123
+}
+
+{
+    "Type": "service",
+    "Action": "create",
+    "Actor": {
+        "ID": "ciw95xncg3in1pbte8h2kmi6a",
+        "Attributes": {
+            "name": "hopeful_cannon"
+        }
+    },
+    "scope": "swarm",
+    "time": 1625360377,
+    "timeNano": 1625360377017468923
+}
+
+
+{
+    "status": "create",
+    "id": "e025f9c0479eb55769389193d0ccd887a9f1afe86677be0af261281e2a8d64c1",
+    "from": "alpine",
+    "Type": "container",
+    "Action": "create",
+    "Actor": {
+        "ID": "e025f9c0479eb55769389193d0ccd887a9f1afe86677be0af261281e2a8d64c1",
+        "Attributes": {
+            "image": "alpine",
+            "name": "img1"
+        }
+    },
+    "scope": "local",
+    "time": 1625360529,
+    "timeNano": 1625360529284372333
+}
